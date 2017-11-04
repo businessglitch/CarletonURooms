@@ -1,0 +1,12 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<div id="rooms">
+				<app-rooms (messageEvent)="recieveMessage($event)" ></app-rooms>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<app-calender-display [newEvent]="calendarEvent" ></app-calender-display>
+		</div>
+	</div>
+</div>
