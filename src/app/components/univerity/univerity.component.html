@@ -1,0 +1,17 @@
+<nav aria-label="breadcrumb" role="navigation">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Universities</li>
+  </ol>
+</nav>
+
+<div class="container">
+    <div class="card" style="width: 20rem;" *ngFor="let university of universitiesList" >
+    <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">{{university.Name}} is hosted in  {{university.City}}, {{university.Country}}</p>
+            <button (click)="getBuildings()" type="button" class="btn btn-primary">{{university.Name}}</button>
+        </div>
+    </div>
+</div>
+

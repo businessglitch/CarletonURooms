@@ -1,0 +1,16 @@
+<nav aria-label="breadcrumb" role="navigation">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Universities</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Buildings</li>
+  </ol>
+</nav>
+
+<div class="container">
+    <div class="card" style="width: 20rem;" *ngFor="let building of buildings" >
+    	<img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+            <h4 class="card-title">{{building.Name}}</h4>
+        </div>
+        <button (click)="getRooms(building.ID)" type="button" class="btn btn-primary">Get Rooms</button>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+.active {
+	background-color: #28BBEA;
+}
+
+#rooms {
+	height: 700px;
+    overflow-y: scroll;
+    border: 2px solid;
+}
+
+#rooms table th {
+	text-align: center;
+    color: #fff;
+    background-color: #000;
+}
