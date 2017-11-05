@@ -24,4 +24,15 @@ export class DataService {
         return this.http.get('api/rooms', {params: {buildingID: id}})
             .map( res => res.json());
     }
+
+    getCourses(roomID) {
+        let myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');    
+        let myParams = new URLSearchParams();
+        myParams.append('roomID', roomID);    
+        let options = new RequestOptions({ headers: myHeaders, params: myParams });
+        
+        return this.http.get('api/courses', {params: {roomID: roomID}})
+            .map( res => res.json());
+    }
 }
