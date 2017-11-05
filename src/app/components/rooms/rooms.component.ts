@@ -18,6 +18,7 @@ export class RoomsComponent implements OnInit {
   }
 
   sendMessage($event, room) {
+    
     this.selected = room.ID;
     this.messageEvent.emit(room.ID);
   }

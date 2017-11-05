@@ -15,3 +15,9 @@ In case if you are wondering why SQLite3, was already installed on the laptop.. 
 COMMANDS: 
 
 To Run: ng build & node server 
+
+
+
+
+
+QUERY DELETE from Rooms Where ID not in  (Select min(ID) from Rooms Group by BuildingID, Number)

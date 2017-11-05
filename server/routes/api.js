@@ -41,7 +41,7 @@ router.get('/buildings', (req, res, next) => {
 router.get('/rooms', (req, res, next) => {
     var buildingID = req.query.buildingID;
     console.log(buildingID);  
-    db.all("SELECT ID, Number FROM ClassRooms WHERE BuildingID =" + buildingID, function(err, rooms) { 
+    db.all("SELECT ID, Number FROM Rooms WHERE BuildingID =" + buildingID +" ORDER BY Number ASC", function(err, rooms) { 
         if (err) {
             return console.log(err.message);
             sendError(err, res);
@@ -49,6 +49,22 @@ router.get('/rooms', (req, res, next) => {
         response.data = rooms;
         res.json(response);        
         console.log("Queried Rooms from Database");
+    });
+});
+
+
+// Get Courses for a specific room
+router.get('/courses', (req, res, next) => {
+    var roomID = req.query.roomID;
+
+    db.all("SELECT * FROM Courses WHERE RoomID =" + roomID +" ORDER BY ID ASC", function(err, courses) { 
+        if (err) {
+            return console.log(err.message);
+            sendError(err, res);
+        }
+        response.data = courses;
+        res.json(response);        
+        console.log("Queried Courses from Database");
     });
 });
 
