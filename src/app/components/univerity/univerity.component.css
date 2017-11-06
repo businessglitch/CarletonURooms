@@ -1,0 +1,10 @@
+.university-body {
+	text-align: center;
+	padding: 20px;
+	background-color: ivory;
+}
+
+.university-card {
+	display: inline-block;
+	margin-right: 20px;
+}

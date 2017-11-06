@@ -7,10 +7,9 @@
 
 <div class="container">
     <div class="card" style="width: 20rem;" *ngFor="let building of buildings" >
-    	<img class="card-img-top" src="..." alt="Card image cap">
         <div class="card-body">
             <h4 class="card-title">{{building.Name}}</h4>
-        </div>
-        <button (click)="getRooms(building.ID)" type="button" class="btn btn-primary">Get Rooms</button>
+            <button (click)="getRooms(building.ID)" type="button" class="btn btn-primary">Get Rooms</button>
+        </div>    
     </div>
 </div>

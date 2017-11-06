@@ -15,8 +15,9 @@ export class UniverityComponent implements OnInit {
     constructor(private dataService:DataService, public router: Router) { 
     }
 
-    getBuildings() {
-      this.router.navigate(['/buildings']);
+    getBuildings(enabled) {
+      console.log(enabled);
+      if(enabled) this.router.navigate(['/buildings']);
     }
 
     ngOnInit() {
