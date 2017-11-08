@@ -8,10 +8,15 @@ import * as $ from 'jquery';
   styleUrls: ['./calender-display.component.css']
 })
 export class CalenderDisplayComponent implements OnInit {
-  @Input() newEvent: any[];
+    @Input() newEvent: any[];
 
-  someEvent: any[];
-	  calendarOptions = {
+    someEvent: any[];
+      calendarOptions = {
+        header: {
+            left: '',
+            center: 'title',
+            right: ''
+        },
         height: '1500',
         nowIndicator: true,
         default: 'bootstrap3',
@@ -21,19 +26,18 @@ export class CalenderDisplayComponent implements OnInit {
         editable: false,
         eventLimit: true, // allow "more" link when too many events
         events:[]
-      };
+    };
 
-  constructor() { 
+    constructor() { 
 
-  }
+    }
 
-  ngOnChanges(changes: SimpleChanges) {
-    $('#myCalendar').fullCalendar('removeEvents', this.calendarOptions.events);  
-    $('#myCalendar').fullCalendar('renderEvents', changes.newEvent.currentValue, false);  
-  }
+    ngOnChanges(changes: SimpleChanges) {
+        $('#myCalendar').fullCalendar('removeEvents', this.calendarOptions.events);  
+        $('#myCalendar').fullCalendar('renderEvents', changes.newEvent.currentValue, false);  
+    }
 
-  ngOnInit() {   
-    this.calendarOptions.events = this.newEvent;     
-  }
-
+    ngOnInit() {   
+        this.calendarOptions.events = this.newEvent;     
+    }
 }
