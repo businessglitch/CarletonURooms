@@ -13,9 +13,13 @@ import * as $ from 'jquery';
 
 export class CalenderDisplayComponent implements OnInit {
     @Input() newEvent: any[];
-
-    someEvent: any[];
-        calendarOptions = {
+  
+    calendarOptions = {
+        header: {
+            left: '',
+            center: 'title',
+            right: ''
+        },
         height: '1500',
         nowIndicator: true,
         default: 'bootstrap3',
@@ -40,4 +44,5 @@ export class CalenderDisplayComponent implements OnInit {
             $('#myCalendar').fullCalendar('renderEvents', this.calendarOptions.events, false);  
         }     
     }   
+
 }
