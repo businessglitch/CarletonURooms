@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChange, SimpleChanges } from '@angular/core';
 import {Router, ActivatedRoute, Params } from '@angular/router';
 import { DataService } from '../../services/data.service';
 
@@ -8,26 +8,24 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./rooms.component.css']
 })
 export class RoomsComponent implements OnInit {
-	buildingID:any;
-	rooms:any[];
-  selected: string = '';
+    @Input() tempRooms: any[];
+    buildingID:any;
+    rooms:any[];
+    selected: string = '';
 
-  @Output() messageEvent;  
-  constructor(private route: ActivatedRoute, private router: Router, private dataService: DataService) { 
-    this.messageEvent = new EventEmitter<string>();
-  }
+    @Output() messageEvent;  
+    constructor(private route: ActivatedRoute, private router: Router, private dataService: DataService) { 
+        this.messageEvent = new EventEmitter<string>();
+    }
 
-  sendMessage($event, room) {
-    
-    this.selected = room.ID;
-    this.messageEvent.emit(room.ID);
-  }
+    sendMessage($event, room) {  
+        this.selected = room.ID;
+        this.messageEvent.emit(room.ID);
+    }
+    ngOnChanges(changes: SimpleChanges) {
+       if(changes.tempRooms.currentValue != undefined) this.selected = changes.tempRooms.currentValue[0].ID   
+    }
 
-  ngOnInit() {
-  	this.buildingID = this.route.snapshot.params.id;
-  	this.dataService.getRooms(this.buildingID).subscribe((tempRoom) => {
-      this.rooms = tempRoom.data;
-    });
-  }
-
+    ngOnInit() {
+    }
 }

@@ -1,5 +1,7 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, Input, Output, OnChanges, SimpleChanges, EventEmitter, SimpleChange  } from '@angular/core';
 import {CalendarComponent} from "ap-angular2-fullcalendar";
+import { DataService } from '../../services/data.service';
+import { HelperService } from '../../services/helper.service';
 import * as $ from 'jquery';
 
 @Component({
@@ -7,11 +9,15 @@ import * as $ from 'jquery';
   templateUrl: './calender-display.component.html',
   styleUrls: ['./calender-display.component.css']
 })
-export class CalenderDisplayComponent implements OnInit {
-  @Input() newEvent: any[];
 
-  someEvent: any[];
-	  calendarOptions = {
+
+export class CalenderDisplayComponent implements OnInit {
+    @Input() newEvent: any[];
+    @Input() tempRooms: any[];
+
+    ranOnce: boolean = false;
+    someEvent: any[];
+        calendarOptions = {
         height: '1500',
         nowIndicator: true,
         default: 'bootstrap3',
@@ -20,20 +26,20 @@ export class CalenderDisplayComponent implements OnInit {
         fixedWeekCount : false,
         editable: false,
         eventLimit: true, // allow "more" link when too many events
-        events:[]
-      };
+        events: this.newEvent
+    };
+ 
+    constructor(private dataService: DataService, public helper: HelperService) { 
+            
+    }
+    ngOnInit() {  
+    }
 
-  constructor() { 
-
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    $('#myCalendar').fullCalendar('removeEvents', this.calendarOptions.events);  
-    $('#myCalendar').fullCalendar('renderEvents', changes.newEvent.currentValue, false);  
-  }
-
-  ngOnInit() {   
-    this.calendarOptions.events = this.newEvent;     
-  }
-
+    ngOnChanges(changes: SimpleChanges) {
+        $('#myCalendar').fullCalendar('removeEvents');  
+        if(changes.newEvent != undefined) {
+            this.calendarOptions.events = changes.newEvent.currentValue;
+            $('#myCalendar').fullCalendar('renderEvents', this.calendarOptions.events, false);  
+        }     
+    }   
 }

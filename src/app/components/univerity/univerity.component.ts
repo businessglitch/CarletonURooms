@@ -16,7 +16,6 @@ export class UniverityComponent implements OnInit {
     }
 
     getBuildings(enabled) {
-      console.log(enabled);
       if(enabled) this.router.navigate(['/buildings']);
     }
 
