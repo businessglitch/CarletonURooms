@@ -6,7 +6,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let room of rooms" [ngClass]="{'active': room.ID === selected}" (click)=sendMessage($event,room)>
+      <tr *ngFor="let room of tempRooms" [ngClass]="{'active': room.ID === selected}" (click)=sendMessage($event,room)>
         <td>{{room.Number}}</td>
       </tr>
     </tbody>

@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div id="rooms">
-				<app-rooms (messageEvent)="recieveMessage($event)" ></app-rooms>
+				<app-rooms (messageEvent)="recieveMessage($event)" [tempRooms]="rooms" ></app-rooms>
 			</div>
 		</div>
 		<div class="col-md-8">
