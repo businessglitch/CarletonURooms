@@ -14,6 +14,7 @@ import {  } from "ap-angular2-fullcalendar";
 import { CalenderDisplayComponent } from './components/calender-display/calender-display.component';
 /*SERVICES*/
 import { DataService } from './services/data.service';
+import { HelperService } from './services/helper.service';
 import { ParentViewComponent } from './components/parent-view/parent-view.component';
 
 
@@ -40,7 +41,7 @@ const appRoutes: Routes = [
     CalendarModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [DataService],
+  providers: [DataService, HelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

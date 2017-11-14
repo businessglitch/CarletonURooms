@@ -33,14 +33,13 @@ router.get('/buildings', (req, res, next) => {
         }
         response.data = buildings;
         res.json(response);        
-        console.log("Queried Buildings from Database");
     });
 });
 
 // Get Rooms for a building
 router.get('/rooms', (req, res, next) => {
     var buildingID = req.query.buildingID;
-    console.log(buildingID);  
+
     db.all("SELECT ID, Number FROM Rooms WHERE BuildingID =" + buildingID +" ORDER BY Number ASC", function(err, rooms) { 
         if (err) {
             return console.log(err.message);
@@ -48,7 +47,6 @@ router.get('/rooms', (req, res, next) => {
         }
         response.data = rooms;
         res.json(response);        
-        console.log("Queried Rooms from Database");
     });
 });
 
@@ -64,7 +62,6 @@ router.get('/courses', (req, res, next) => {
         }
         response.data = courses;
         res.json(response);        
-        console.log("Queried Courses from Database");
     });
 });
 
