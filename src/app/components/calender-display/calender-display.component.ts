@@ -13,9 +13,7 @@ import * as $ from 'jquery';
 
 export class CalenderDisplayComponent implements OnInit {
     @Input() newEvent: any[];
-    @Input() tempRooms: any[];
 
-    ranOnce: boolean = false;
     someEvent: any[];
         calendarOptions = {
         height: '1500',

@@ -9,8 +9,6 @@ import { DataService } from '../../services/data.service';
 })
 export class RoomsComponent implements OnInit {
     @Input() tempRooms: any[];
-    buildingID:any;
-    rooms:any[];
     selected: string = '';
 
     @Output() messageEvent;  

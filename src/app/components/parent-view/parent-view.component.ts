@@ -11,8 +11,6 @@ import { HelperService } from '../../services/helper.service';
 export class ParentViewComponent implements OnInit {
     rooms: any[];
     calendarEvent: any[];
-    initRoomId: string;
-    private sub: any;
 
     constructor(private dataService: DataService, private route: ActivatedRoute, public helper: HelperService) {
     }
