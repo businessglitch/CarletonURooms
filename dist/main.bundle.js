@@ -86,7 +86,8 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_rooms_rooms_component__ = __webpack_require__("../../../../../src/app/components/rooms/rooms.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_calender_display_calender_display_component__ = __webpack_require__("../../../../../src/app/components/calender-display/calender-display.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_data_service__ = __webpack_require__("../../../../../src/app/services/data.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_parent_view_parent_view_component__ = __webpack_require__("../../../../../src/app/components/parent-view/parent-view.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_helper_service__ = __webpack_require__("../../../../../src/app/services/helper.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_parent_view_parent_view_component__ = __webpack_require__("../../../../../src/app/components/parent-view/parent-view.component.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -110,10 +111,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 /*SERVICES*/
 
 
+
 var appRoutes = [
     { path: '', component: __WEBPACK_IMPORTED_MODULE_7__components_univerity_univerity_component__["a" /* UniverityComponent */] },
     { path: 'buildings', component: __WEBPACK_IMPORTED_MODULE_8__components_buildings_buildings_component__["a" /* BuildingsComponent */] },
-    { path: 'rooms/:id', component: __WEBPACK_IMPORTED_MODULE_12__components_parent_view_parent_view_component__["a" /* ParentViewComponent */] }
+    { path: 'rooms/:id', component: __WEBPACK_IMPORTED_MODULE_13__components_parent_view_parent_view_component__["a" /* ParentViewComponent */] }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -128,7 +130,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_8__components_buildings_buildings_component__["a" /* BuildingsComponent */],
             __WEBPACK_IMPORTED_MODULE_9__components_rooms_rooms_component__["a" /* RoomsComponent */],
             __WEBPACK_IMPORTED_MODULE_10__components_calender_display_calender_display_component__["a" /* CalenderDisplayComponent */],
-            __WEBPACK_IMPORTED_MODULE_12__components_parent_view_parent_view_component__["a" /* ParentViewComponent */]
+            __WEBPACK_IMPORTED_MODULE_13__components_parent_view_parent_view_component__["a" /* ParentViewComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -137,7 +139,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_5_ap_angular2_fullcalendar__["CalendarModule"],
             __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* RouterModule */].forRoot(appRoutes)
         ],
-        providers: [__WEBPACK_IMPORTED_MODULE_11__services_data_service__["a" /* DataService */]],
+        providers: [__WEBPACK_IMPORTED_MODULE_11__services_data_service__["a" /* DataService */], __WEBPACK_IMPORTED_MODULE_12__services_helper_service__["a" /* HelperService */]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
@@ -167,7 +169,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/buildings/buildings.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav aria-label=\"breadcrumb\" role=\"navigation\">\n  <ol class=\"breadcrumb\">\n    <li class=\"breadcrumb-item\"><a href=\"#\">Universities</a></li>\n    <li class=\"breadcrumb-item active\" aria-current=\"page\">Buildings</li>\n  </ol>\n</nav>\n\n<div class=\"container\">\n    <div class=\"card\" style=\"width: 20rem;\" *ngFor=\"let building of buildings\" >\n    \t<img class=\"card-img-top\" src=\"...\" alt=\"Card image cap\">\n        <div class=\"card-body\">\n            <h4 class=\"card-title\">{{building.Name}}</h4>\n        </div>\n        <button (click)=\"getRooms(building.ID)\" type=\"button\" class=\"btn btn-primary\">Get Rooms</button>\n    </div>\n</div>"
+module.exports = "<nav aria-label=\"breadcrumb\" role=\"navigation\">\n  <ol class=\"breadcrumb\">\n    <li class=\"breadcrumb-item\"><a href=\"#\">Universities</a></li>\n    <li class=\"breadcrumb-item active\" aria-current=\"page\">Buildings</li>\n  </ol>\n</nav>\n\n<div class=\"container\">\n    <div class=\"card\" style=\"width: 20rem;\" *ngFor=\"let building of buildings\" >\n        <div class=\"card-body\">\n            <h4 class=\"card-title\">{{building.Name}}</h4>\n            <button (click)=\"getRooms(building.ID)\" type=\"button\" class=\"btn btn-primary\">Get Rooms</button>\n        </div>    \n    </div>\n</div>"
 
 /***/ }),
 
@@ -251,8 +253,10 @@ module.exports = "<angular2-fullcalendar id=\"myCalendar\" [options]=\"calendarO
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery__ = __webpack_require__("../../../../jquery/dist/jquery.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_data_service__ = __webpack_require__("../../../../../src/app/services/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_helper_service__ = __webpack_require__("../../../../../src/app/services/helper.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery__ = __webpack_require__("../../../../jquery/dist/jquery.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_jquery__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CalenderDisplayComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -265,9 +269,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
 var CalenderDisplayComponent = (function () {
-    function CalenderDisplayComponent() {
+    function CalenderDisplayComponent(dataService, helper) {
+        this.dataService = dataService;
+        this.helper = helper;
         this.calendarOptions = {
+            header: {
+                left: '',
+                center: 'title',
+                right: ''
+            },
             height: '1500',
             nowIndicator: true,
             default: 'bootstrap3',
@@ -276,15 +289,17 @@ var CalenderDisplayComponent = (function () {
             fixedWeekCount: false,
             editable: false,
             eventLimit: true,
-            events: []
+            events: this.newEvent
         };
     }
-    CalenderDisplayComponent.prototype.ngOnChanges = function (changes) {
-        __WEBPACK_IMPORTED_MODULE_1_jquery__('#myCalendar').fullCalendar('removeEvents', this.calendarOptions.events);
-        __WEBPACK_IMPORTED_MODULE_1_jquery__('#myCalendar').fullCalendar('renderEvents', changes.newEvent.currentValue, false);
-    };
     CalenderDisplayComponent.prototype.ngOnInit = function () {
-        this.calendarOptions.events = this.newEvent;
+    };
+    CalenderDisplayComponent.prototype.ngOnChanges = function (changes) {
+        __WEBPACK_IMPORTED_MODULE_3_jquery__('#myCalendar').fullCalendar('removeEvents');
+        if (changes.newEvent != undefined) {
+            this.calendarOptions.events = changes.newEvent.currentValue;
+            __WEBPACK_IMPORTED_MODULE_3_jquery__('#myCalendar').fullCalendar('renderEvents', this.calendarOptions.events, false);
+        }
     };
     return CalenderDisplayComponent;
 }());
@@ -298,9 +313,10 @@ CalenderDisplayComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/calender-display/calender-display.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/calender-display/calender-display.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_helper_service__["a" /* HelperService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_helper_service__["a" /* HelperService */]) === "function" && _b || Object])
 ], CalenderDisplayComponent);
 
+var _a, _b;
 //# sourceMappingURL=calender-display.component.js.map
 
 /***/ }),
@@ -326,7 +342,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/parent-view/parent-view.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n\t<div class=\"row\">\n\t\t<div class=\"col-md-3\">\n\t\t\t<div id=\"rooms\">\n\t\t\t\t<app-rooms (messageEvent)=\"recieveMessage($event)\" ></app-rooms>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"col-md-8\">\n\t\t\t<app-calender-display [newEvent]=\"calendarEvent\" ></app-calender-display>\n\t\t</div>\n\t</div>\n</div>"
+module.exports = "<div class=\"container\">\n\t<div class=\"row\">\n\t\t<div class=\"col-md-3\">\n\t\t\t<div id=\"rooms\">\n\t\t\t\t<app-rooms (messageEvent)=\"recieveMessage($event)\" [tempRooms]=\"rooms\" ></app-rooms>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"col-md-8\">\n\t\t\t<app-calender-display [newEvent]=\"calendarEvent\" ></app-calender-display>\n\t\t</div>\n\t</div>\n</div>"
 
 /***/ }),
 
@@ -335,6 +351,9 @@ module.exports = "<div class=\"container\">\n\t<div class=\"row\">\n\t\t<div cla
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_data_service__ = __webpack_require__("../../../../../src/app/services/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_helper_service__ = __webpack_require__("../../../../../src/app/services/helper.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ParentViewComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -346,21 +365,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var ParentViewComponent = (function () {
-    function ParentViewComponent() {
+    function ParentViewComponent(dataService, route, helper) {
+        this.dataService = dataService;
+        this.route = route;
+        this.helper = helper;
     }
     ParentViewComponent.prototype.ngOnInit = function () {
     };
+    ParentViewComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        var buildingID = this.route.snapshot.params.id;
+        this.dataService.getRooms(buildingID).subscribe(function (tempRoom) {
+            _this.rooms = tempRoom.data;
+            _this.recieveMessage(_this.rooms[0].ID);
+        });
+    };
     ParentViewComponent.prototype.recieveMessage = function ($event) {
-        console.log($event);
-        this.calendarEvent = [
-            {
-                title: 'RepeatingEvent',
-                start: '10:00',
-                End: '15:00',
-                dow: [1, 4]
-            }
-        ];
+        var _this = this;
+        var courses = [];
+        this.dataService.getCourses($event).subscribe(function (tempCourses) {
+            courses = tempCourses.data;
+            _this.calendarEvent = _this.helper.formatData(courses);
+        });
     };
     return ParentViewComponent;
 }());
@@ -370,9 +400,10 @@ ParentViewComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/parent-view/parent-view.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/parent-view/parent-view.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_data_service__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_data_service__["a" /* DataService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_helper_service__["a" /* HelperService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_helper_service__["a" /* HelperService */]) === "function" && _c || Object])
 ], ParentViewComponent);
 
+var _a, _b, _c;
 //# sourceMappingURL=parent-view.component.js.map
 
 /***/ }),
@@ -385,7 +416,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".active {\n\tbackground-color: #28BBEA;\n}\n\n#rooms {\n\theight: 700px;\n    overflow-y: scroll;\n    border: 2px solid;\n}\n\n#rooms table th {\n\ttext-align: center;\n    color: #fff;\n    background-color: #000;\n}", ""]);
+exports.push([module.i, ".active {\n\tbackground-color: #0275D8;\n\tcolor: #FFF;\n}\n\n#rooms {\n\theight: 700px;\n    overflow-y: scroll;\n    border: 2px solid;\n}\n\n#rooms table th {\n\ttext-align: center;\n    color: #fff;\n    background-color: #000;\n}", ""]);
 
 // exports
 
@@ -398,7 +429,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/rooms/rooms.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"rooms\">  \n  <table class=\"table\">\n    <thead>\n      <tr>\n        <th scope=\"col\">Room Number</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let room of rooms\" [ngClass]=\"{'active': room.ID === selected}\" (click)=sendMessage($event,room)>\n        <td>{{room.Number}}</td>\n      </tr>\n    </tbody>\n  </table>\n</div>  \n"
+module.exports = "<div id=\"rooms\">  \n  <table class=\"table\">\n    <thead>\n      <tr>\n        <th scope=\"col\">Room Number</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let room of tempRooms\" [ngClass]=\"{'active': room.ID === selected}\" (click)=sendMessage($event,room)>\n        <td>{{room.Number}}</td>\n      </tr>\n    </tbody>\n  </table>\n</div>  \n"
 
 /***/ }),
 
@@ -434,15 +465,18 @@ var RoomsComponent = (function () {
         this.selected = room.ID;
         this.messageEvent.emit(room.ID);
     };
+    RoomsComponent.prototype.ngOnChanges = function (changes) {
+        if (changes.tempRooms.currentValue != undefined)
+            this.selected = changes.tempRooms.currentValue[0].ID;
+    };
     RoomsComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.buildingID = this.route.snapshot.params.id;
-        this.dataService.getRooms(this.buildingID).subscribe(function (tempRoom) {
-            _this.rooms = tempRoom.data;
-        });
     };
     return RoomsComponent;
 }());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Array)
+], RoomsComponent.prototype, "tempRooms", void 0);
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
     __metadata("design:type", Object)
@@ -469,7 +503,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".university-body {\n\ttext-align: center;\n\tpadding: 20px;\n\tbackground-color: ivory;\n}\n\n.university-card {\n\tdisplay: inline-block;\n\tmargin-right: 20px;\n}", ""]);
 
 // exports
 
@@ -482,7 +516,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/univerity/univerity.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav aria-label=\"breadcrumb\" role=\"navigation\">\n  <ol class=\"breadcrumb\">\n    <li class=\"breadcrumb-item active\" aria-current=\"page\">Universities</li>\n  </ol>\n</nav>\n\n<div class=\"container\">\n    <div class=\"card\" style=\"width: 20rem;\" *ngFor=\"let university of universitiesList\" >\n    <img class=\"card-img-top\" src=\"...\" alt=\"Card image cap\">\n        <div class=\"card-body\">\n            <h4 class=\"card-title\">Card title</h4>\n            <p class=\"card-text\">{{university.Name}} is hosted in  {{university.City}}, {{university.Country}}</p>\n            <button (click)=\"getBuildings()\" type=\"button\" class=\"btn btn-primary\">{{university.Name}}</button>\n        </div>\n    </div>\n</div>\n\n"
+module.exports = "<div id= \"Header\">\n    <nav aria-label=\"breadcrumb\" role=\"navigation\">\n      <ol class=\"breadcrumb\">\n        <li class=\"breadcrumb-item active\" aria-current=\"page\">Universities</li>\n      </ol>\n    </nav>\n</div>\n\n<div class=\"container\">\n    <div class=\"card university-card\" style=\"width: 20rem;\" *ngFor=\"let university of universitiesList\" >\n    <img class=\"card-img-top\" src= {{university.Image}} alt=\"Card image cap\">\n        <div class=\"card-body university-body\">\n            <button (click)=\"getBuildings(university.Enabled)\" type=\"button\" [ngClass]=\"{'disabled' : university.Enabled === false}\"class=\"btn btn-primary\">{{university.Name}}</button>\n            <p class=\"card-text\">{{university.Name}} is located in  {{university.City}}, {{university.Country}}</p>\n        </div>\n    </div>\n</div>\n\n<div id=\"Footer\">\n\n</div>"
 
 /***/ }),
 
@@ -513,8 +547,9 @@ var UniverityComponent = (function () {
         this.dataService = dataService;
         this.router = router;
     }
-    UniverityComponent.prototype.getBuildings = function () {
-        this.router.navigate(['/buildings']);
+    UniverityComponent.prototype.getBuildings = function (enabled) {
+        if (enabled)
+            this.router.navigate(['/buildings']);
     };
     UniverityComponent.prototype.ngOnInit = function () {
         this.universitiesList = __WEBPACK_IMPORTED_MODULE_2__mocks_universities_universities__["a" /* UNIVERSITIES_LIST */];
@@ -541,8 +576,8 @@ var _a, _b;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UNIVERSITIES_LIST; });
 var universitiesList = [
-    { Name: "Carleton University", Country: "Canada", City: "Ottawa" },
-    { Name: "Ottawa University", Country: "Canada", City: "Ottawa" },
+    { Name: "Carleton University", Country: "Canada", City: "Ottawa", Image: "./assets/CU.jpg", Enabled: true },
+    { Name: "Ottawa University", Country: "Canada", City: "Ottawa", Image: "./assets/OU.png", Enabled: false },
 ];
 var UNIVERSITIES_LIST = universitiesList;
 //# sourceMappingURL=universities.js.map
@@ -587,6 +622,15 @@ var DataService = (function () {
         return this.http.get('api/rooms', { params: { buildingID: id } })
             .map(function (res) { return res.json(); });
     };
+    DataService.prototype.getCourses = function (roomID) {
+        var myHeaders = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
+        myHeaders.append('Content-Type', 'application/json');
+        var myParams = new URLSearchParams();
+        myParams.append('roomID', roomID);
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: myHeaders, params: myParams });
+        return this.http.get('api/courses', { params: { roomID: roomID } })
+            .map(function (res) { return res.json(); });
+    };
     return DataService;
 }());
 DataService = __decorate([
@@ -596,6 +640,73 @@ DataService = __decorate([
 
 var _a;
 //# sourceMappingURL=data.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/services/helper.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HelperService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var HelperService = (function () {
+    function HelperService() {
+    }
+    HelperService.prototype.formatData = function (courses) {
+        var eventArray = [];
+        for (var i = 0; i < courses.length; i++) {
+            var days = this.dayNumber(courses[i].Days.split(" "));
+            var startDate = this.convertDate(courses[i].StartDate);
+            var eventObj = {
+                title: courses[i].Name,
+                start: courses[i].StartTime,
+                End: courses[i].EndTime,
+                dow: days
+            };
+            eventArray.push(eventObj);
+        }
+        //this.calendarEvent = eventArray;
+        return eventArray;
+    };
+    HelperService.prototype.dayNumber = function (days) {
+        var weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        var arr = [];
+        for (var i = 0; i < days.length; i++) {
+            arr.push(weekDays.indexOf(days[i]));
+        }
+        return arr;
+    };
+    // Converts MMM dd yyyy to yyyy,mm,dd
+    HelperService.prototype.convertDate = function (date) {
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        if (date != "") {
+            var yearSplit = date.split(",");
+            var daySplit = yearSplit[0].split(" ");
+            var year = yearSplit[1];
+            var day = daySplit[1];
+            var month = months.indexOf(daySplit[0]) + 1;
+            var finalDate = year + "/" + month + "/" + day;
+            return finalDate;
+        }
+    };
+    return HelperService;
+}());
+HelperService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [])
+], HelperService);
+
+//# sourceMappingURL=helper.service.js.map
 
 /***/ }),
 
