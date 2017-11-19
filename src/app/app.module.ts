@@ -1,7 +1,7 @@
 /* MODULES*/
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { CalendarModule } from "ap-angular2-fullcalendar";
@@ -16,6 +16,10 @@ import { CalenderDisplayComponent } from './components/calender-display/calender
 import { DataService } from './services/data.service';
 import { HelperService } from './services/helper.service';
 import { ParentViewComponent } from './components/parent-view/parent-view.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { TabAboutComponent } from './components/tab-about/tab-about.component';
+import { TabFeedbackComponent } from './components/tab-feedback/tab-feedback.component';
 
 
 
@@ -32,11 +36,16 @@ const appRoutes: Routes = [
     BuildingsComponent,
     RoomsComponent,
     CalenderDisplayComponent,
-    ParentViewComponent
+    ParentViewComponent,
+    HeaderComponent,
+    FooterComponent,
+    TabAboutComponent,
+    TabFeedbackComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     CalendarModule,
     RouterModule.forRoot(appRoutes)

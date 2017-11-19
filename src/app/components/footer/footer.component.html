@@ -1,0 +1,10 @@
+<div id="Footer">
+    <div class="ui top attached tabular menu">
+        <a (click)="activateTab($event,1)" class="item active">Feedback</a>
+        <a (click)="activateTab($event,2)" class="item">About</a>
+    </div>
+    <div class="ui bottom attached segment">
+    	<tab-about></tab-about>
+    	<tab-feedback></tab-feedback>
+    </div>
+</div>
