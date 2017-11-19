@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import { UNIVERSITIES_LIST } from '../../mocks/universities/universities';
 import { University } from '../../models/University/university.interface';
 import { DataService } from '../../services/data.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-univerity',
@@ -22,5 +23,4 @@ export class UniverityComponent implements OnInit {
     ngOnInit() {
         this.universitiesList = UNIVERSITIES_LIST;
     }
-
 }
