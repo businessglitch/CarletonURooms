@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'tab-feedback',
@@ -7,13 +7,19 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./tab-feedback.component.css']
 })
 export class TabFeedbackComponent implements OnInit {
+	feedback = {
+    	firstName: '',
+    	lastName:  '',
+    	email: '',
+    	message: ''
+	};
+  	constructor() { }
 
-  constructor() { }
+	ngOnInit() {
+	}
 
-  ngOnInit() {
-  }
-  submitForm($event) {
-  	$("#Feedback > div").addClass("loading");
-  }
+	onFormSubmit(feedbackForm: NgForm) {
+	  	$("#Feedback > div").addClass("loading");
+	}
 
 }

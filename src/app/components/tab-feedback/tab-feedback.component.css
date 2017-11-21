@@ -1,0 +1,12 @@
+.row {
+	display: -webkit-box;
+}
+
+#feedbackSection{
+position: fixed;
+bottom: 1%;
+}
+
+.asterisk {
+	color: red;
+}
