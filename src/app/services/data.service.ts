@@ -14,6 +14,17 @@ export class DataService {
             .map( res => res.json());
     }
 
+    sendMail(feedback) {
+        let myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');    
+        let myParams = new URLSearchParams();
+        myParams.append('feedback', feedback);    
+        let options = new RequestOptions({ headers: myHeaders, params: myParams });
+        
+        return this.http.get('/api/mail', {params: {feedback: feedback}})
+            .map( res => res.json());
+    }
+
     getRooms(id) {
     	let myHeaders = new Headers();
     	myHeaders.append('Content-Type', 'application/json');    
