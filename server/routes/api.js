@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const sqlite = require('sqlite3');
-
+const mailgun = require('../mailgun/mailgun')
+ 
 // Connect
 let db = new sqlite.Database('CarletonU', (err) => {
     if (err) {
@@ -36,6 +37,29 @@ router.get('/buildings', (req, res, next) => {
     });
 });
 
+// Send Mail
+router.get('/mail', (req, res, next) => {
+    var data = {
+        from: 'Excited User <me@samples.mailgun.org>',
+        to: 'fahadhayat@outlook.com',
+        subject: 'Hello',
+        text: 'Testing some Mailgun awesomness!'
+    };
+
+    mailgun.messages().send(data, function (error, body) {
+        if (error) {
+            return console.log(error.message);
+            response.data = false;
+            response.status = 400;
+            response.message = error.message;
+            res.json(response);
+        }
+        response.data = true;
+        response.status = 200;
+        res.json(response);  
+    });
+});
+
 // Get Rooms for a building
 router.get('/rooms', (req, res, next) => {
     var buildingID = req.query.buildingID;
@@ -50,7 +74,6 @@ router.get('/rooms', (req, res, next) => {
     });
 });
 
-
 // Get Courses for a specific room
 router.get('/courses', (req, res, next) => {
     var roomID = req.query.roomID;
@@ -64,16 +87,5 @@ router.get('/courses', (req, res, next) => {
         res.json(response);        
     });
 });
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = router;
