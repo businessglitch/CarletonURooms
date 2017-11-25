@@ -1,9 +1,31 @@
 <div id="Feedback">
 	<div class="ui form">
-	  	<div class="field">
-	    	<label>E-mail</label>
-	    	<input type="email" placeholder="joe@schmoe.com">
-	  	</div>
-	  	<div class="ui submit button" (click)="submitForm($event)">Submit</div>
+		<form #feedbackForm="ngForm" (ngSubmit)="onFormSubmit(feedbackForm)">
+			<div class="row">
+				<div class="field col-md-3">
+			    	<label>First Name</label>
+			    	<input name="firstName" type="text" placeholder="First Name"
+			    	[(ngModel)]="feedback.firstName">
+			    </div>
+			    <div class="field col-md-3">
+			    	<label>Last Name</label>
+			    	<input name="lastName" type="text" placeholder="Last Name"
+			    	[(ngModel)]="feedback.lastName">
+			  	</div>
+		  	</div>
+		  	<div class="row">
+				<div class="field col-md-6">
+			    	<label>E-mail <span class="asterisk">*</span></label>
+			    	<input name="email" type="email" placeholder="joe@schmoe.com"
+			    	[(ngModel)]="feedback.email" required>
+			  	</div>
+			  	<div id="feedbackSection"class="field col-md-6">
+			    	<label>Feedback <span class="asterisk">*</span></label>
+			    	<textarea name="feedback" type="text" placeholder="We appreciate your feedback"
+			    	[(ngModel)]="feedback.message" required></textarea>
+			  	</div>
+		  	</div>
+		  	<button type="submit" class="btn btn-primary" [disabled]="!feedbackForm.valid">Submit</button>
+		</form>
 	</div>
 </div>
