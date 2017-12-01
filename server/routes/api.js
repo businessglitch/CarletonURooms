@@ -38,24 +38,30 @@ router.get('/buildings', (req, res, next) => {
 });
 
 // Send Mail
-router.get('/mail', (req, res, next) => {
+router.post('/mail', (req, res, next) => {
+    var feedback = req.body.params.feedback
+    console.log(feedback);
+
     var data = {
-        from: 'Excited User <me@samples.mailgun.org>',
+        from: feedback.email,
         to: 'fahadhayat@outlook.com',
-        subject: 'Hello',
-        text: 'Testing some Mailgun awesomness!'
+        subject: 'This is a Feedback from '+feedback.firstName+' '+feedback.lastName,
+        text: feedback.message
     };
 
     mailgun.messages().send(data, function (error, body) {
         if (error) {
-            return console.log(error.message);
             response.data = false;
             response.status = 400;
             response.message = error.message;
-            res.json(response);
+            return console.log(error.message);
+            sendError(error, res);
+        } else {
+            response.data = true;
+            response.status = 200;
+            response.message = "Thank you for your Feedback!"
         }
-        response.data = true;
-        response.status = 200;
+        
         res.json(response);  
     });
 });

@@ -21,7 +21,7 @@ export class DataService {
         myParams.append('feedback', feedback);    
         let options = new RequestOptions({ headers: myHeaders, params: myParams });
         
-        return this.http.get('/api/mail', {params: {feedback: feedback}})
+        return this.http.post('/api/mail', {params: {feedback: feedback}})
             .map( res => res.json());
     }
 
