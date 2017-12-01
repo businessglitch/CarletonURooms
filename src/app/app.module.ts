@@ -20,13 +20,15 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TabAboutComponent } from './components/tab-about/tab-about.component';
 import { TabFeedbackComponent } from './components/tab-feedback/tab-feedback.component';
+import { FeedbackFormPageComponent } from './feedback-form-page/feedback-form-page.component';
 
 
 
 const appRoutes: Routes = [
   {path:'', component:UniverityComponent},
   {path:'buildings', component:BuildingsComponent},
-  {path:'rooms/:id', component:ParentViewComponent}
+  {path:'rooms/:id', component:ParentViewComponent},
+  {path:'feedback', component:FeedbackFormPageComponent},
 ];
 
 @NgModule({
@@ -40,7 +42,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     FooterComponent,
     TabAboutComponent,
-    TabFeedbackComponent
+    TabFeedbackComponent,
+    FeedbackFormPageComponent
   ],
   imports: [
     BrowserModule,
