@@ -1,12 +1,27 @@
 .row {
 	display: -webkit-box;
 }
+.btn {
+	margin-top: 15px;
+}
 
 #feedbackSection{
-position: fixed;
-bottom: 1%;
+	margin-top: 15px;
 }
 
 .asterisk {
 	color: red;
+}
+
+.input-error {
+	color: red;
+}
+
+#feedbackResponse {
+	display: none;
+}
+
+#Feedback {
+	background-color: #FFF;
+	padding: 20px;
 }
