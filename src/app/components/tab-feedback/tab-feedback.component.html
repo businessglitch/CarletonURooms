@@ -1,6 +1,6 @@
 <div id="Feedback">
 	<div class="ui form">
-		<form #feedbackForm="ngForm" (ngSubmit)="onFormSubmit(feedbackForm)">
+		<form #feedbackForm="ngForm" (ngSubmit)="onFormSubmit(feedbackForm)" novalidate>
 			<div class="row">
 				<div class="field col-md-3">
 			    	<label>First Name</label>
@@ -16,14 +16,29 @@
 		  	<div class="row">
 				<div class="field col-md-6">
 			    	<label>E-mail <span class="asterisk">*</span></label>
-			    	<input name="email" type="email" placeholder="joe@schmoe.com"
-			    	[(ngModel)]="feedback.email" required>
+			    	<input 	name="email" 
+			    			type="email" 
+			    			#email="ngModel"
+			    			placeholder="joe@schmoe.com"
+			    			[(ngModel)]="feedback.email"	
+			    			pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+			    			required
+			    		>
+			    	<div *ngIf="email.invalid && email.dirty">
+			    		<span class="input-error">Email is not valid</span>
+			    	</div>	
 			  	</div>
+		  	</div>
+		  	<div class="row"> 
 			  	<div id="feedbackSection"class="field col-md-6">
-			    	<label>Feedback <span class="asterisk">*</span></label>
-			    	<textarea name="feedback" type="text" placeholder="We appreciate your feedback"
-			    	[(ngModel)]="feedback.message" required></textarea>
-			  	</div>
+				    <label>Feedback <span class="asterisk">*</span></label>
+				    <textarea name="feedback" type="text" placeholder="We appreciate your feedback"
+				    	[(ngModel)]="feedback.message" required></textarea>
+				</div>
+			</div>
+		  	<div id="feedbackResponse">
+		  		<div [ngClass]="{'alert alert-success': response.data === true,
+		  				'alert alert-danger': response.data === false}">{{response.message}} </div>
 		  	</div>
 		  	<button type="submit" class="btn btn-primary" [disabled]="!feedbackForm.valid">Submit</button>
 		</form>

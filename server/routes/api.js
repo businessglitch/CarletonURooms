@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const sqlite = require('sqlite3');
-
+const mailgun = require('../mailgun/mailgun')
+ 
 // Connect
 let db = new sqlite.Database('CarletonU', (err) => {
     if (err) {
@@ -36,6 +37,35 @@ router.get('/buildings', (req, res, next) => {
     });
 });
 
+// Send Mail
+router.post('/mail', (req, res, next) => {
+    var feedback = req.body.params.feedback
+    console.log(feedback);
+
+    var data = {
+        from: feedback.email,
+        to: 'fahadhayat@outlook.com',
+        subject: 'This is a Feedback from '+feedback.firstName+' '+feedback.lastName,
+        text: feedback.message
+    };
+
+    mailgun.messages().send(data, function (error, body) {
+        if (error) {
+            response.data = false;
+            response.status = 400;
+            response.message = error.message;
+            return console.log(error.message);
+            sendError(error, res);
+        } else {
+            response.data = true;
+            response.status = 200;
+            response.message = "Thank you for your Feedback!"
+        }
+        
+        res.json(response);  
+    });
+});
+
 // Get Rooms for a building
 router.get('/rooms', (req, res, next) => {
     var buildingID = req.query.buildingID;
@@ -50,7 +80,6 @@ router.get('/rooms', (req, res, next) => {
     });
 });
 
-
 // Get Courses for a specific room
 router.get('/courses', (req, res, next) => {
     var roomID = req.query.roomID;
@@ -64,16 +93,5 @@ router.get('/courses', (req, res, next) => {
         res.json(response);        
     });
 });
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = router;

@@ -13,14 +13,16 @@ import * as $ from 'jquery';
 })
 export class UniverityComponent implements OnInit {
     universitiesList: University[];
+    currentTab: string;
     constructor(private dataService:DataService, public router: Router) { 
     }
 
     getBuildings(enabled) {
-      if(enabled) this.router.navigate(['/buildings']);
+        if(enabled) this.router.navigate(['/buildings']);
     }
 
     ngOnInit() {
         this.universitiesList = UNIVERSITIES_LIST;
+        this.currentTab = "Universities";
     }
 }
