@@ -40,8 +40,6 @@ router.get('/buildings', (req, res, next) => {
 // Send Mail
 router.post('/mail', (req, res, next) => {
     var feedback = req.body.params.feedback
-    console.log(feedback);
-
     var data = {
         from: feedback.email,
         to: 'fahadhayat@outlook.com',
