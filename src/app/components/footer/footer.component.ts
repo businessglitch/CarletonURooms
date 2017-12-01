@@ -26,9 +26,4 @@ export class FooterComponent implements OnInit {
                 break;
         }
     }
-
-    sendEmail(feedback) {
-        
-    }
-
 }
