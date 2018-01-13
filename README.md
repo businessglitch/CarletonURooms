@@ -1,23 +1,30 @@
-DESCRIPTION:
+# CARLETONU ROOMS
 
-A simple app that displays all the rooms in CarletonU and a Calendar that displays when are Lectures held at those rooms.
+## DESCRIPTION:
 
-SEAN STACK
+A web app that displays all the rooms in CarletonU with a Calendar that displays lectures that are being held in that room.
 
-SQLite 3
-Express JS
-Angular JS
-Node JS
+This app is currenlty being hosted on Digital Ocean server
+http://159.203.113.6:3000/
 
-In case if you are wondering why SQLite3, was already installed on the laptop.. too lazy to install MongoDB.
+## CALENDAR API
+	Full Calendar 
+	https://fullcalendar.io/
+
+## MESSAGE SENDING API
+	Mail Gun
+	https://signup.mailgun.com/new/signup
+
+## SEAN STACK
+
+### SQLite 3
+### Express JS
+### Angular JS
+### Node JS
 
 
-COMMANDS: 
+## COMMANDS: 
 
-To Run: ng build & node server 
+1.  npm install - installs all the dependencies 
+2.  ng build && node server - build the app and runs the server
 
-
-
-
-
-QUERY DELETE from Rooms Where ID not in  (Select min(ID) from Rooms Group by BuildingID, Number)
