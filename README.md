@@ -18,9 +18,19 @@ http://159.203.113.6:3000/
 ## SEAN STACK
 
 ### SQLite 3
+More about SQlite: https://sqlite.org/
+
 ### Express JS
+More about ExpressJs: https://expressjs.com/
+To install express type in command line: npm install express --save
+
+
 ### Angular JS
+Download AngularJs here: https://angularjs.org/
+
+
 ### Node JS
+Install node here: https://nodejs.org/en/
 
 
 ## COMMANDS: 
